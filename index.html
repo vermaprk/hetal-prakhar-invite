@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Hetal &amp;amp; Prakhar — Wedding Invitation</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#FBF5E6;--linen:#F0E6CE;--linen2:#E8D5B0;
+  --text:#3D5A1E;--text2:#4e6e35;--text3:#263818;
+  --sage:#6B8F4A;--gold:#C9952A;--gold-l:#E8C45A;--gold-d:#8B6914;
+  --gold-pale:#F5DFA0;--cream:#FFFEF9;
+}
+body{background:#EDE3CE;font-family:'Cormorant Garamond',serif;color:var(--text);overflow-x:hidden}
+
+/* ── LINEN ──── */
+.linen-bg{
+  background-color:var(--bg);
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.018) 3px,rgba(0,0,0,.018) 4px),
+    repeating-linear-gradient(90deg,transparent,transparent 3px,rgba(0,0,0,.014) 3px,rgba(0,0,0,.014) 4px),
+    repeating-linear-gradient(45deg,transparent,transparent 7px,rgba(0,0,0,.008) 7px,rgba(0,0,0,.008) 8px),
+    repeating-linear-gradient(-45deg,transparent,transparent 7px,rgba(0,0,0,.008) 7px,rgba(0,0,0,.008) 8px)
+}
+
+/* ── DOOR ─────────────────────── */
+#door-wrap{
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:min(88vw,380px);height:min(85vh,540px);
+  z-index:500;cursor:pointer;
+  perspective:1000px;perspective-origin:50% 42%
+}
+.door{
+  position:absolute;top:0;bottom:0;width:50%;
+  background-color:#4e3a1e;
+  transition:transform 1.3s cubic-bezier(.65,0,.35,1);will-change:transform;overflow:hidden
+}
+.door::before{content:'';position:absolute;inset:20px;border:1.5px solid rgba(201,149,42,.25);pointer-events:none}
+.door::after{content:'';position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 60px rgba(0,0,0,.3)}
+#dl{left:0;transform-origin:0 50%;box-shadow:inset -8px 0 24px rgba(0,0,0,.35)}
+#dr{right:0;transform-origin:100% 50%;box-shadow:inset 8px 0 24px rgba(0,0,0,.35)}
+#door-wrap.opening #dl{transform:rotateY(-88deg)}
+#door-wrap.opening #dr{transform:rotateY(88deg)}
+.door-seam{position:absolute;top:0;bottom:0;left:50%;width:2px;background:rgba(0,0,0,.3);z-index:501;pointer-events:none}
+
+/* door golden trim */
+#door-wrap::before,#door-wrap::after{content:'';position:absolute;top:0;bottom:0;width:3px;z-index:502;pointer-events:none;background:linear-gradient(to bottom,transparent,var(--gold) 15%,var(--gold-l) 50%,var(--gold) 85%,transparent)}
+#door-wrap::before{left:0}
+#door-wrap::after{right:0}
+
+/* plaque */
+#plaque-wrap{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  z-index:510;display:flex;flex-direction:column;align-items:center;
+  pointer-events:none;transition:opacity .35s ease,transform .35s ease
+}
+#door-wrap.opening #plaque-wrap{opacity:0;transform:translate(-50%,-54%) scale(.93)}
+.plaque{position:relative;display:flex;flex-direction:column;align-items:center;animation:hang 3.5s ease-in-out infinite;transform-origin:top center}
+@keyframes hang{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
+.plaque-ribbon{width:3px;height:48px;background:linear-gradient(to bottom,var(--gold-l),var(--gold));margin:0 auto;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.plaque-body{
+  background:linear-gradient(145deg,#f8f0d8 0%,#ede0be 50%,#f2e8cc 100%);
+  border-radius:50% 50% 50% 50% / 20% 20% 20% 20%;
+  padding:28px 2px 34px;position:relative;text-align:center;min-width:0;
+  box-shadow:0 8px 32px rgba(0,0,0,.35),inset 0 1px 2px rgba(255,255,255,.6),0 0 0 3px var(--gold),0 0 0 6px rgba(0,0,0,.15)
+}
+.plaque-leaf{display:flex;justify-content:center;margin:5px 0}
+.plaque-rule{display:flex;align-items:center;gap:8px;margin:8px 0}
+.plaque-rule::before,.plaque-rule::after{content:'';flex:1;height:1px;background:var(--gold)}
+.plaque-rule span{color:var(--gold-d);font-size:1rem}
+.plaque-couple{font-family:'Great Vibes',cursive;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-size:2.4rem;color:var(--text3);line-height:1;display:block;margin:2px 0}
+.plaque-amp{font-size:1.6rem;color:var(--gold-d);display:block;margin:-2px 0}
+.plaque-hint{font-family:'Montserrat',sans-serif;font-size:.62rem;letter-spacing:4px;text-transform:uppercase;color:#9a7840;display:block;margin-top:10px}
+.tap-pulse{margin-top:14px;font-family:'Cormorant Garamond',serif;font-size:.82rem;font-style:italic;color:rgba(255,255,255,.65);letter-spacing:1px;animation:blink 2.1s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:.6}50%{opacity:1}}
+
+/* ── GARLANDS ─────────────────── */
+.garland{position:fixed;top:0;width:54px;height:100vh;z-index:490;pointer-events:none;overflow:hidden;opacity:0;transition:opacity .6s ease .4s}
+.garland.show{opacity:1}
+.garland-left{left:0;transform-origin:top center;animation:swayL 5s ease-in-out infinite}
+.garland-right{right:0;transform-origin:top center;animation:swayR 5s ease-in-out infinite}
+@keyframes swayL{0%,100%{transform:rotate(-.8deg)}50%{transform:rotate(.8deg)}}
+@keyframes swayR{0%,100%{transform:rotate(.8deg)}50%{transform:rotate(-.8deg)}}
+
+/* ── PETALS ───────────────────── */
+.petal{position:fixed;border-radius:60% 0 60% 0;pointer-events:none;z-index:2;animation:petalFall linear infinite}
+@keyframes petalFall{0%{transform:translateY(-20px) rotate(0) translateX(0);opacity:.7}25%{transform:translateY(25vh) rotate(90deg) translateX(18px)}50%{transform:translateY(50vh) rotate(180deg) translateX(-14px)}75%{transform:translateY(75vh) rotate(270deg) translateX(22px)}100%{transform:translateY(108vh) rotate(360deg) translateX(0);opacity:0}}
+
+/* ── INVITATION ───────────────── */
+#invitation{opacity:0;transition:opacity .6s ease .3s;pointer-events:none}
+#invitation.vis{opacity:1;pointer-events:auto}
+
+/* ── SECTION BASE ─────────────── */
+.section{min-height:100vh;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 70px;text-align:center;overflow:hidden}
+
+/* ── ORNAMENT ─────────────────── */
+.odiv{display:flex;align-items:center;gap:10px;max-width:320px;width:100%;margin:16px auto}
+.oline{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+.ocenter{display:flex;align-items:center;gap:5px}
+.odiam{width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
+.odiam.sm{width:4px;height:4px}
+
+/* ── NAMES SECTION ────────────── */
+#sec-names{padding-top:90px;padding-bottom:80px}
+.tassel{position:absolute;top:0}
+.tassel.L{left:50px}.tassel.R{right:50px}
+.trees-row{position:absolute;bottom:0;left:0;right:0;display:flex;align-items:flex-end;justify-content:space-between;pointer-events:none}
+.wgm{font-size:1rem;font-style:italic;color:var(--text2);margin-bottom:8px}
+.bride-name,.groom-name{font-family:'Great Vibes',cursive;font-size:clamp(2.8rem,11vw,4.2rem);display:block;color:var(--text);line-height:1.05}
+.amp-sym{font-family:'Great Vibes',cursive;font-size:clamp(1.6rem,6vw,2.4rem);color:var(--sage);display:block;margin:-2px 0}
+.family-line{font-size:.9rem;font-style:italic;color:var(--sage);line-height:1.9;margin-top:10px}
+.scroll-hint{position:absolute;bottom:95px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;animation:arrBounce 1.9s ease-in-out infinite}
+@keyframes arrBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+.scroll-hint p{font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:3px;color:var(--sage);text-transform:uppercase}
+.scroll-hint svg{width:18px;height:18px;fill:none;stroke:var(--sage);stroke-width:2}
+
+/* ── WELCOME ──────────────────── */
+#sec-welcome{padding:80px 72px}
+.welcome-txt{font-size:1.1rem;font-style:italic;line-height:2.1;color:var(--text2);max-width:320px;margin:0 auto}
+.welcome-txt strong{font-style:normal;color:var(--text3);font-weight:400}
+
+/* ── SCRATCH ──────────────────── */
+#sec-scratch{padding:80px 72px}
+#scratch-wrap{position:relative;width:240px;height:240px;margin:22px auto;cursor:crosshair}
+#scratch-canvas{position:absolute;inset:0;width:100%;height:100%}
+.cal-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
+.cal-btn{display:inline-flex;align-items:center;gap:7px;padding:11px 20px;border:1.5px solid var(--gold);border-radius:100px;background:transparent;color:var(--text);font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:all .3s}
+.cal-btn:hover,.cal-btn:active{background:var(--gold);color:var(--cream)}
+
+/* ── COUNTDOWN ────────────────── */
+#sec-countdown{padding:80px 72px}
+.cnt-row{display:flex;justify-content:center;gap:10px;margin:24px 0;flex-wrap:wrap}
+.cnt-box{min-width:68px;border:1.5px solid rgba(61,90,30,.3);border-radius:8px;padding:14px 8px 10px;background:rgba(255,255,255,.45);text-align:center}
+.cnt-n{font-size:2rem;font-weight:300;display:block;line-height:1;color:var(--text3)}
+.cnt-l{font-family:'Montserrat',sans-serif;font-size:.53rem;letter-spacing:2px;text-transform:uppercase;color:var(--sage);display:block;margin-top:4px}
+
+/* ── PROGRAMME ────────────────── */
+#sec-timeline{padding:70px 72px;justify-content:flex-start;padding-top:80px}
+.tl-day{font-family:'Montserrat',sans-serif;font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--text3);margin:24px 0 14px;display:flex;align-items:center;gap:10px;font-weight:600;width:100%;max-width:340px}
+.tl-day::before,.tl-day::after{content:'';flex:1;height:1px;background:rgba(61,90,30,.25)}
+.tl-entry{display:flex;gap:16px;align-items:flex-start;margin:14px 0;text-align:left;width:100%;max-width:340px}
+.tl-time{font-family:'Montserrat',sans-serif;font-size:.68rem;letter-spacing:.5px;color:var(--sage);min-width:72px;padding-top:3px;font-weight:500}
+.tl-event{font-size:1.15rem;font-weight:500;color:var(--text3);font-family:'Cormorant Garamond',serif;letter-spacing:.5px}
+.tl-desc{font-size:.87rem;font-style:italic;color:var(--sage);margin-top:2px}
+
+/* ── FOOTER ───────────────────── */
+#sec-footer{padding:80px 72px 90px}
+.foot-quote{font-size:.95rem;font-style:italic;color:var(--sage);line-height:1.95;max-width:280px;margin:0 auto 20px}
+.foot-names{font-family:'Great Vibes',cursive;font-size:2.6rem;color:var(--text)}
+.foot-date{font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--sage);margin-top:8px}
+.share-row{display:flex;gap:10px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.sh-btn{padding:10px 20px;border:1.5px solid rgba(61,90,30,.35);border-radius:100px;background:rgba(255,255,255,.45);color:var(--text);font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:all .3s}
+.sh-btn:hover,.sh-btn:active{background:var(--text);color:white;border-color:var(--text)}
+.copy-ok{font-size:.82rem;font-style:italic;color:var(--text2);margin-top:8px;min-height:20px;text-align:center}
+
+/* ── FADE-UP ──────────────────── */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
+.fade-up.in{opacity:1;transform:none}
+
+/* ── SCRIPT TITLE ─────────────── */
+.script-title{font-family:'Great Vibes',cursive;color:var(--text);line-height:1.1}
+
+@media(max-width:480px){
+  .section{padding:55px 54px}
+  .tassel.L{left:30px}.tassel.R{right:30px}
+  #sec-timeline{padding:60px 54px}
+  .tl-entry,.tl-day{max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- ── DOORS ──────────────────────────── -->
+<div id="door-wrap" onclick="openInvitation()">
+  <div class="door" id="dl"></div>
+  <div class="door" id="dr"></div>
+  <div class="door-seam"></div>
+
+  <div id="plaque-wrap">
+    <div class="plaque">
+      <div class="plaque-ribbon"></div>
+      <div class="plaque-body">
+        <svg width="100%" viewBox="0 0 160 52" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-bottom:4px">
+          <defs>
+            <radialGradient id="bg1" cx="40%" cy="30%" r="65%">
+              <stop offset="0%" stop-color="#E8C45A"/>
+              <stop offset="55%" stop-color="#C9952A"/>
+              <stop offset="100%" stop-color="#8B6914"/>
+            </radialGradient>
+          </defs>
+          <!-- U-curve string -->
+          <path d="M10,6 Q80,46 150,6" stroke="#C9952A" stroke-width="1.2" fill="none"/>
+          <!-- Bell 1 -->
+          <rect x="8" y="6" width="4" height="4" rx="1" fill="#8B6914"/>
+          <path d="M8,10 L8,11 Q4.5,14 4.5,19 Q4.5,21 10,21 Q15.5,21 15.5,19 Q15.5,14 12,11 L12,10Z" fill="url(#bg1)"/>
+          <ellipse cx="10" cy="21" rx="5.5" ry="1.8" fill="#8B6914" opacity=".75"/>
+          <circle cx="10" cy="23" r="1.5" fill="#8B6914"/>
+          <!-- Bell 2 -->
+          <rect x="31" y="17" width="4" height="4" rx="1" fill="#8B6914"/>
+          <path d="M31,21 L31,22 Q27.5,25 27.5,30 Q27.5,32 33,32 Q38.5,32 38.5,30 Q38.5,25 35,22 L35,21Z" fill="url(#bg1)"/>
+          <ellipse cx="33" cy="32" rx="5.5" ry="1.8" fill="#8B6914" opacity=".75"/>
+          <circle cx="33" cy="34" r="1.5" fill="#8B6914"/>
+          <!-- Bell 3 -->
+          <rect x="55" y="24" width="4" height="4" rx="1" fill="#8B6914"/>
+          <path d="M55,28 L55,29 Q51.5,32 51.5,37 Q51.5,39 57,39 Q62.5,39 62.5,37 Q62.5,32 59,29 L59,28Z" fill="url(#bg1)"/>
+          <ellipse cx="57" cy="39" rx="5.5" ry="1.8" fill="#8B6914" opacity=".75"/>
+          <circle cx="57" cy="41" r="1.5" fill="#8B6914"/>
+          <!-- Bell 4 (centre) -->
+          <rect x="78" y="26" width="4" height="4" rx="1" fill="#8B6914"/>
+          <path d="M78,30 L78,31 Q74.5,34 74.5,39 Q74.5,41 80,41 Q85.5,41 85.5,39 Q85.5,34 82,31 L82,30Z" fill="url(#bg1)"/>
+          <ellipse cx="80" cy="41" rx="5.5" ry="1.8" fill="#8B6914" opacity=".75"/>
+          <circle cx="80" cy="43" r="1.5" fill="#8B6914"/>
+          <!-- Bell 5 -->
+          <rect x="101" y="24" width="4" height="4" rx="1" fill="#8B6914"/>
+          <path d="M101,28 L101,29 Q97.5,32 97.5,37 Q97.5,39 103,39 Q108.5,39 108.5,37 Q108.5,32 105,29 L105,28Z" fill="url(#bg1)"/>
+          <ellipse cx="103" cy="39" rx="5.5" ry="1.8" fill="#8B6914" opacity=".75"/>
+          <circle cx="103" cy="41" r="1.5" fill="#8B6914"/>
+          <!-- Bell 6 -->
+          <rect x="125" y="17" width="4" height="4" rx="1" fill="#8B6914"/>
+          <path d="M125,21 L125,22 Q121.5,25 121.5,30 Q121.5,32 127,32 Q132.5,32 132.5,30 Q132.5,25 129,22 L129,21Z" fill="url(#bg1)"/>
+          <ellipse cx="127" cy="32" rx="5.5" ry="1.8" fill="#8B6914" opacity=".75"/>
+          <circle cx="127" cy="34" r="1.5" fill="#8B6914"/>
+          <!-- Bell 7 -->
+          <rect x="148" y="6" width="4" height="4" rx="1" fill="#8B6914"/>
+          <path d="M148,10 L148,11 Q144.5,14 144.5,19 Q144.5,21 150,21 Q155.5,21 155.5,19 Q155.5,14 152,11 L152,10Z" fill="url(#bg1)"/>
+          <ellipse cx="150" cy="21" rx="5.5" ry="1.8" fill="#8B6914" opacity=".75"/>
+          <circle cx="150" cy="23" r="1.5" fill="#8B6914"/>
+        </svg>
+        <div class="plaque-leaf">
+          <svg width="80" height="28" viewBox="0 0 80 28" fill="none">
+            <path d="M40 2 Q55 2 60 11 Q65 20 50 22 Q45 23 40 20" stroke="#C9952A" stroke-width="1.2" fill="none"/>
+            <path d="M40 2 Q25 2 20 11 Q15 20 30 22 Q35 23 40 20" stroke="#C9952A" stroke-width="1.2" fill="none"/>
+            <circle cx="40" cy="2" r="2.5" fill="#C9952A" opacity=".7"/>
+          </svg>
+        </div>
+        <div class="plaque-rule"><span>✦</span></div>
+        <div class="plaque-couple">A</div>
+        <div class="plaque-couple">Celebration Awaits</div>
+        <div class="plaque-rule" style="margin-top:4px"><span>◆</span></div>
+        <span class="plaque-hint">Tap to Open</span>
+        <div class="plaque-leaf" style="margin-top:8px">
+          <svg width="60" height="26" viewBox="0 0 60 26" fill="none">
+            <path d="M30 24 Q20 22 15 13 Q10 4 25 4 Q28 4 30 7" stroke="#C9952A" stroke-width="1.2" fill="none"/>
+            <path d="M30 24 Q40 22 45 13 Q50 4 35 4 Q32 4 30 7" stroke="#C9952A" stroke-width="1.2" fill="none"/>
+            <path d="M30 7 L30 24" stroke="#C9952A" stroke-width=".8" stroke-dasharray="2 2"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <p class="tap-pulse">✦ Touch anywhere to begin ✦</p>
+  </div>
+</div>
+
+<!-- ── GARLANDS ───────────────────────── -->
+<div class="garland garland-left" id="gl"></div>
+<div class="garland garland-right" id="gr"></div>
+
+<!-- ── INVITATION ─────────────────────── -->
+<div id="invitation">
+
+  <!-- NAMES -->
+  <div class="section linen-bg" id="sec-names">
+    <!-- Tassels -->
+    <div class="tassel L">
+      <svg width="52" height="130" viewBox="0 0 52 130" fill="none">
+        <rect x="4" y="2" width="44" height="6" rx="3" fill="#C9952A" opacity=".8"/>
+        <circle cx="9" cy="5" r="3" fill="#E8C45A"/><circle cx="18" cy="5" r="3" fill="#E8C45A"/><circle cx="27" cy="5" r="3" fill="#E8C45A"/><circle cx="36" cy="5" r="3" fill="#E8C45A"/><circle cx="45" cy="5" r="3" fill="#E8C45A"/>
+        <line x1="9" y1="8" x2="7" y2="84" stroke="#C9952A" stroke-width="1.2"/><line x1="14" y1="8" x2="12" y2="82" stroke="#C9952A" stroke-width="1"/><line x1="18" y1="8" x2="17" y2="86" stroke="#C9952A" stroke-width="1.2"/><line x1="23" y1="8" x2="21" y2="84" stroke="#C9952A" stroke-width="1"/><line x1="27" y1="8" x2="27" y2="86" stroke="#C9952A" stroke-width="1.2"/><line x1="32" y1="8" x2="32" y2="82" stroke="#C9952A" stroke-width="1"/><line x1="36" y1="8" x2="36" y2="86" stroke="#C9952A" stroke-width="1.2"/><line x1="41" y1="8" x2="42" y2="82" stroke="#C9952A" stroke-width="1"/><line x1="45" y1="8" x2="45" y2="84" stroke="#C9952A" stroke-width="1.2"/>
+        <ellipse cx="26" cy="86" rx="13" ry="4" stroke="#8B6914" stroke-width="2" fill="none"/>
+        <line x1="14" y1="90" x2="13" y2="128" stroke="#C9952A" stroke-width="1"/><line x1="19" y1="90" x2="18" y2="130" stroke="#C9952A" stroke-width="1"/><line x1="23" y1="90" x2="22" y2="128" stroke="#C9952A" stroke-width="1"/><line x1="27" y1="90" x2="27" y2="130" stroke="#C9952A" stroke-width="1.2"/><line x1="31" y1="90" x2="32" y2="128" stroke="#C9952A" stroke-width="1"/><line x1="35" y1="90" x2="36" y2="130" stroke="#C9952A" stroke-width="1"/><line x1="40" y1="90" x2="41" y2="127" stroke="#C9952A" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="tassel R">
+      <svg width="52" height="130" viewBox="0 0 52 130" fill="none" style="transform:scaleX(-1)">
+        <rect x="4" y="2" width="44" height="6" rx="3" fill="#C9952A" opacity=".8"/>
+        <circle cx="9" cy="5" r="3" fill="#E8C45A"/><circle cx="18" cy="5" r="3" fill="#E8C45A"/><circle cx="27" cy="5" r="3" fill="#E8C45A"/><circle cx="36" cy="5" r="3" fill="#E8C45A"/><circle cx="45" cy="5" r="3" fill="#E8C45A"/>
+        <line x1="9" y1="8" x2="7" y2="84" stroke="#C9952A" stroke-width="1.2"/><line x1="14" y1="8" x2="12" y2="82" stroke="#C9952A" stroke-width="1"/><line x1="18" y1="8" x2="17" y2="86" stroke="#C9952A" stroke-width="1.2"/><line x1="23" y1="8" x2="21" y2="84" stroke="#C9952A" stroke-width="1"/><line x1="27" y1="8" x2="27" y2="86" stroke="#C9952A" stroke-width="1.2"/><line x1="32" y1="8" x2="32" y2="82" stroke="#C9952A" stroke-width="1"/><line x1="36" y1="8" x2="36" y2="86" stroke="#C9952A" stroke-width="1.2"/><line x1="41" y1="8" x2="42" y2="82" stroke="#C9952A" stroke-width="1"/><line x1="45" y1="8" x2="45" y2="84" stroke="#C9952A" stroke-width="1.2"/>
+        <ellipse cx="26" cy="86" rx="13" ry="4" stroke="#8B6914" stroke-width="2" fill="none"/>
+        <line x1="14" y1="90" x2="13" y2="128" stroke="#C9952A" stroke-width="1"/><line x1="19" y1="90" x2="18" y2="130" stroke="#C9952A" stroke-width="1"/><line x1="23" y1="90" x2="22" y2="128" stroke="#C9952A" stroke-width="1"/><line x1="27" y1="90" x2="27" y2="130" stroke="#C9952A" stroke-width="1.2"/><line x1="31" y1="90" x2="32" y2="128" stroke="#C9952A" stroke-width="1"/><line x1="35" y1="90" x2="36" y2="130" stroke="#C9952A" stroke-width="1"/><line x1="40" y1="90" x2="41" y2="127" stroke="#C9952A" stroke-width="1"/>
+      </svg>
+    </div>
+
+    <!-- Trees -->
+    <div class="trees-row">
+      <svg width="130" height="195" viewBox="0 0 130 195" fill="none" preserveAspectRatio="xMidYMax meet">
+        <ellipse cx="30" cy="115" rx="17" ry="88" fill="#5a7a3a" opacity=".8"/><ellipse cx="30" cy="97" rx="11" ry="68" fill="#6a8a4a" opacity=".65"/><line x1="30" y1="195" x2="30" y2="176" stroke="#6a4a28" stroke-width="3"/>
+        <ellipse cx="62" cy="136" rx="12" ry="58" fill="#5a7a3a" opacity=".7"/><ellipse cx="62" cy="122" rx="7" ry="43" fill="#6a8a4a" opacity=".55"/><line x1="62" y1="195" x2="62" y2="186" stroke="#6a4a28" stroke-width="2.5"/>
+        <circle cx="85" cy="163" r="10" fill="#C9952A" opacity=".75"/><circle cx="92" cy="157" r="8" fill="#E8C45A" opacity=".65"/><circle cx="77" cy="168" r="8" fill="#C9952A" opacity=".7"/>
+        <ellipse cx="98" cy="170" rx="13" ry="6" fill="#6a8a4a" transform="rotate(-18 98 170)"/><ellipse cx="108" cy="166" rx="11" ry="5" fill="#5a7a3a" transform="rotate(-34 108 166)"/><ellipse cx="70" cy="174" rx="11" ry="5" fill="#6a8a4a" transform="rotate(14 70 174)"/>
+        <circle cx="102" cy="178" r="5" fill="#F5DFA0" opacity=".8"/><circle cx="112" cy="174" r="4" fill="#F5DFA0" opacity=".75"/>
+      </svg>
+      <svg width="130" height="195" viewBox="0 0 130 195" fill="none" preserveAspectRatio="xMidYMax meet" style="transform:scaleX(-1)">
+        <ellipse cx="30" cy="115" rx="17" ry="88" fill="#5a7a3a" opacity=".8"/><ellipse cx="30" cy="97" rx="11" ry="68" fill="#6a8a4a" opacity=".65"/><line x1="30" y1="195" x2="30" y2="176" stroke="#6a4a28" stroke-width="3"/>
+        <ellipse cx="62" cy="136" rx="12" ry="58" fill="#5a7a3a" opacity=".7"/><ellipse cx="62" cy="122" rx="7" ry="43" fill="#6a8a4a" opacity=".55"/><line x1="62" y1="195" x2="62" y2="186" stroke="#6a4a28" stroke-width="2.5"/>
+        <circle cx="85" cy="163" r="10" fill="#C9952A" opacity=".75"/><circle cx="92" cy="157" r="8" fill="#E8C45A" opacity=".65"/><circle cx="77" cy="168" r="8" fill="#C9952A" opacity=".7"/>
+        <ellipse cx="98" cy="170" rx="13" ry="6" fill="#6a8a4a" transform="rotate(-18 98 170)"/><ellipse cx="108" cy="166" rx="11" ry="5" fill="#5a7a3a" transform="rotate(-34 108 166)"/><ellipse cx="70" cy="174" rx="11" ry="5" fill="#6a8a4a" transform="rotate(14 70 174)"/>
+        <circle cx="102" cy="178" r="5" fill="#F5DFA0" opacity=".8"/><circle cx="112" cy="174" r="4" fill="#F5DFA0" opacity=".75"/>
+      </svg>
+    </div>
+
+    <div class="fade-up">
+      <div class="odiv"><div class="oline"></div><div class="ocenter"><div class="odiam sm"></div><div class="odiam"></div><div class="odiam sm"></div></div><div class="oline"></div></div>
+      <p class="wgm">We are Getting Married</p>
+      <span class="bride-name">Hetal</span>
+      <div style="font-size:.88rem;font-style:italic;color:var(--sage);margin:2px 0">Daughter of Mr. &amp; Mrs. Bhatia</div>
+      <span class="amp-sym">&amp;</span>
+      <span class="groom-name">Prakhar</span>
+      <div style="font-size:.88rem;font-style:italic;color:var(--sage);margin:2px 0">Son of Mr. &amp; Mrs. Verma</div>
+      <div class="odiv" style="margin-top:16px"><div class="oline"></div><div class="ocenter"><div class="odiam sm"></div><div class="odiam"></div><div class="odiam sm"></div></div><div class="oline"></div></div>
+    </div>
+
+    <div class="scroll-hint">
+      <p>Scroll</p>
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </div>
+
+  <!-- WELCOME -->
+  <div class="section linen-bg fade-up" id="sec-welcome">
+    <div class="odiv"><div class="oline"></div><div class="ocenter"><div class="odiam sm"></div><div class="odiam"></div><div class="odiam sm"></div></div><div class="oline"></div></div>
+    <p class="script-title" style="font-size:2.6rem;margin:14px 0">A Warm Welcome</p>
+    <div class="odiv"><div class="oline"></div><div class="ocenter"><div class="odiam sm"></div><div class="odiam"></div><div class="odiam sm"></div></div><div class="oline"></div></div>
+    <p class="welcome-txt" style="margin-top:20px">
+      Together with our families, we invite you to celebrate our wedding. You are the warmth in our hearts and the joy in our smiles — having you by our side on this beautiful day means everything to us. Come, celebrate, and fill this day with your love and blessings.
+    </p>
+    <div class="odiv" style="margin-top:20px"><div class="oline"></div><div class="ocenter"><div class="odiam sm"></div><div class="odiam"></div><div class="odiam sm"></div></div><div class="oline"></div></div>
+  </div>
+
+  <!-- SCRATCH TO REVEAL -->
+  <div class="section linen-bg fade-up" id="sec-scratch">
+    <div class="odiv"><div class="oline"></div><div class="ocenter"><div class="odiam sm"></div><div class="odiam"></div><div class="odiam sm"></div></div><div class="oline"></div></div>
+    <p class="script-title" style="font-size:2.6rem;margin:14px 0">Scratch to Reveal</p>
+    <div class="odiv"><div class="oline"></div><div class="ocenter"><div class="odiam sm"></div><div class="odiam"></div><div class="odiam sm"></div></div><div class="oline"></div></div>
+    <div id="scratch-wrap">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+        <svg id="reveal-heart" width="240" height="240" viewBox="0 0 200 185">
+          <defs>
+            <linearGradient id="dg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FBF5E6"/><stop offset="100%" stop-color="#E8D5B0"/>
+            </linearGradient>
+          </defs>
+          <path d="M100 170 C100 170 15 110 15 60 C15 32 36 12 65 12 C80 12 92 20 100 32 C108 20 120 12 135 12 C164 12 185 32 185 60 C185 110 100 170 100 170Z" fill="url(#dg)" stroke="#E8C45A" stroke-width="1.5"/>
+          <text x="100" y="58" text-anchor="middle" font-family="'Great Vibes',cursive" font-size="19" fill="#8B6914">The Wedding</text>
+          <line x1="70" y1="65" x2="130" y2="65" stroke="#C9952A" stroke-width="0.8" opacity="0.6"/>
+          <text x="100" y="81" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="13.5" font-weight="700" font-style="italic" fill="#3D5A1E">30 January 2027</text>
+          <line x1="65" y1="89" x2="135" y2="89" stroke="#C9952A" stroke-width="0.6" opacity="0.4"/>
+          <text x="100" y="105" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="13" font-weight="700" font-style="italic" fill="#3D5A1E">11:00 AM — 4:00 PM</text>
+          <line x1="65" y1="113" x2="135" y2="113" stroke="#C9952A" stroke-width="0.6" opacity="0.4"/>
+          <text x="100" y="129" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="12.5" font-weight="700" font-style="italic" fill="#3D5A1E">Hotel Maurya</text>
+          <text x="100" y="143" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="11.5" font-weight="700" font-style="italic" fill="#3D5A1E">Patna</text>
+        </svg>
+      </div>
+      <canvas id="scratch-canvas"></canvas>
+    </div>
+    <div style="text-align:center;margin-top:4px">
+      <button onclick="toggleCalOptions(event)" class="cal-btn" style="font-size:.7rem;padding:13px 32px;letter-spacing:3px">✦ Save the Date ✦</button>
+      <div id="cal-options" style="display:none;margin-top:12px;animation:fadeIn .3s ease">
+        <div class="cal-btns">
+          <a class="cal-btn" href="#" onclick="addGoogle(event)">📅 Google</a>
+          <a class="cal-btn" href="#" onclick="addApple(event)">🍎 Apple</a>
+          <a class="cal-btn" href="#" onclick="addOutlook(event)">📊 Outlook</a>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:16px">
+      <div id="cnt-panel" style="display:none;opacity:0;transition:opacity .8s ease;margin-top:20px">
+        <p class="script-title" style="font-size:2rem;margin-bottom:14px">Counting Down to Forever</p>
+        <div class="cnt-row">
+          <div class="cnt-box"><span class="cnt-n" id="d-cnt">--</span><span class="cnt-l">Days</span></div>
+          <div class="cnt-box"><span class="cnt-n" id="h-cnt">--</span><span class="cnt-l">Hours</span></div>
+          <div class="cnt-box"><span class="cnt-n" id="m-cnt">--</span><span class="cnt-l">Minutes</span></div>
+          <div class="cnt-box"><span class="cnt-n" id="s-cnt">--</span><span class="cnt-l">Seconds</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="odiv" style="margin-top:20px"><div class="oline"></div><div class="ocenter"><div class="odiam sm"></div><div class="odiam"></div><div class="odiam sm"></div></div><div class="oline"></div></div>
+  </div>
+
+  <!-- PROGRAMME -->
+  <div class="section linen-bg fade-up" id="sec-timeline">
+    <div class="odiv"><div class="oline"></div><div class="ocenter"><div class="odiam sm"></div><div class="odiam"></div><div class="odiam sm"></div></div><div class="oline"></div></div>
+    <p class="script-title" style="font-size:2.6rem;margin:14px 0">Wedding Programme</p>
+    <div class="odiv"><div class="oline"></div><div class="ocenter"><div class="odiam sm"></div><div class="odiam"></div><div class="odiam sm"></div></div><div class="oline"></div></div>
+
+    <div class="tl-day">Thursday, 29 January 2027</div>
+    <div style="width:100%;max-width:340px">
+      <div class="tl-entry">
+        <span class="tl-time">2:00 PM</span>
+        <div><div class="tl-event">Guest Arrival 🌸</div><div class="tl-desc">With garlands of marigold and smiles that could light up the sky — we welcome you with open arms and hearts full of joy.</div></div>
+      </div>
+      <div class="tl-entry">
+        <span class="tl-time">3:30 PM</span>
+        <div><div class="tl-event">High Tea ☕</div><div class="tl-desc">Because good tea deserves great company!</div></div>
+      </div>
+      <div class="tl-entry">
+        <span class="tl-time">6:00 PM +</span>
+        <div><div class="tl-event">Mehendi Evening 🌿</div><div class="tl-desc">An evening of henna, music, food and laughter. Come ready to celebrate!</div></div>
+      </div>
+    </div>
+
+    <div class="tl-day" style="margin-top:20px">Friday, 30 January 2027</div>
+    <div style="width:100%;max-width:340px">
+      <div class="tl-entry">
+        <span class="tl-time">11:00 AM</span>
+        <div><div class="tl-event" style="color:var(--gold-d);font-size:1.22rem">✦ The Wedding ✦</div><div class="tl-desc">The day we have all been waiting for. Witness the beautiful union of Hetal &amp; Prakhar as they begin their forever together. 11:00 AM – 4:00 PM at Hotel Maurya, Patna.</div></div>
+      </div>
+      <div class="tl-entry">
+        <span class="tl-time">Evening</span>
+        <div><div class="tl-event">Explore the City 🏛️</div><div class="tl-desc">The evenings are yours to discover Patna — a city rich in history, warmth, and flavours. Wander, explore, and savour every moment.</div></div>
+      </div>
+    </div>
+
+    <div class="tl-day" style="margin-top:20px">Saturday, 31 January 2027</div>
+    <div style="width:100%;max-width:340px">
+      <div class="tl-entry">
+        <span class="tl-time">Departure</span>
+        <div><div class="tl-event">Farewell &amp; Safe Travels 🕊️</div><div class="tl-desc">Thank you for making the journey to celebrate our love. You've filled our hearts, our laughter, and our photographs — we carry your blessings into every day ahead.</div></div>
+      </div>
+    </div>
+
+    <div class="odiv" style="margin-top:24px"><div class="oline"></div><div class="ocenter"><div class="odiam sm"></div><div class="odiam"></div><div class="odiam sm"></div></div><div class="oline"></div></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="section linen-bg fade-up" id="sec-footer">
+    <div class="odiv"><div class="oline"></div><div class="ocenter"><div class="odiam sm"></div><div class="odiam"></div><div class="odiam sm"></div></div><div class="oline"></div></div>
+    <p class="foot-quote">"Two families, one celebration,<br>a lifetime of memories begin here."</p>
+    <p class="foot-names">Hetal &amp; Prakhar</p>
+    <div class="odiv" style="margin-top:20px"><div class="oline"></div><div class="ocenter"><div class="odiam sm"></div><div class="odiam"></div><div class="odiam sm"></div></div><div class="oline"></div></div>
+    <div class="share-row">
+      <button class="sh-btn" onclick="copyLink()">📋 Copy Link</button>
+      <a class="sh-btn" id="wa-btn" href="#" onclick="shareWA(event)">💬 WhatsApp</a>
+    </div>
+    <p class="copy-ok" id="copy-ok"></p>
+  </div>
+
+</div><!-- /#invitation -->
+
+<script>
+/* ══ OPEN DOORS ══════════════════════════ */
+function openInvitation() {
+  var dw = document.getElementById('door-wrap');
+  if (dw.classList.contains('opening')) return;
+  dw.classList.add('opening');
+  setTimeout(function(){
+    var inv = document.getElementById('invitation');
+    inv.classList.add('vis');
+    document.getElementById('gl').classList.add('show');
+    document.getElementById('gr').classList.add('show');
+    spawnPetals();
+  }, 500);
+  setTimeout(function(){ dw.style.display = 'none'; }, 1600);
+}
+
+/* ══ GARLAND BUILDER ═════════════════════ */
+function buildGarland(el, side) {
+  var h = window.innerHeight, W = 54;
+  var cx = side === 'left' ? 32 : 22;
+  var gId = side;
+  var p = '';
+  var d = 'M'+cx+',0';
+  var seg = Math.ceil(h/100)+2;
+  for (var i=0;i<seg;i++){
+    var y0=i*100,y1=y0+100;
+    var sw=side==='left'?(i%2===0?-6:6):(i%2===0?6:-6);
+    d+=' Q'+(cx+sw)+','+(y0+50)+' '+cx+','+y1;
+  }
+  p+='<path d="'+d+'" stroke="url(#cg_'+gId+')" stroke-width="2.5" fill="none" opacity=".9"/>';
+  for (var fy=55;fy<h;fy+=100){
+    for (var j=0;j<8;j++){
+      var a=j*45*Math.PI/180;
+      p+='<circle cx="'+(cx+Math.cos(a)*12).toFixed(1)+'" cy="'+(fy+Math.sin(a)*12).toFixed(1)+'" r="5.5" fill="#C9952A" opacity=".72"/>';
+    }
+    for (var j=0;j<8;j++){
+      var a=(j*45+22.5)*Math.PI/180;
+      p+='<circle cx="'+(cx+Math.cos(a)*8).toFixed(1)+'" cy="'+(fy+Math.sin(a)*8).toFixed(1)+'" r="3.8" fill="#E8C45A" opacity=".82"/>';
+    }
+    p+='<circle cx="'+cx+'" cy="'+fy+'" r="6.5" fill="url(#fg_'+gId+')"/>';
+    p+='<circle cx="'+cx+'" cy="'+fy+'" r="2.5" fill="#FFFEF9" opacity=".8"/>';
+    var ly=fy+50;
+    if (ly<h-20){
+      var ls=side==='left'?1:-1;
+      p+='<ellipse cx="'+(cx-ls*10)+'" cy="'+(ly-3)+'" rx="7.5" ry="3.5" fill="#4A5E2F" opacity=".5" transform="rotate(-28 '+(cx-ls*10)+' '+(ly-3)+')" />';
+      p+='<ellipse cx="'+(cx+ls*10)+'" cy="'+(ly+3)+'" rx="7.5" ry="3.5" fill="#4A5E2F" opacity=".5" transform="rotate(28 '+(cx+ls*10)+' '+(ly+3)+')" />';
+    }
+  }
+  p+='<circle cx="'+cx+'" cy="12" r="15" fill="url(#fg_'+gId+')" opacity=".9"/>';
+  p+='<circle cx="'+cx+'" cy="12" r="8.5" fill="#E8C45A"/>';
+  p+='<circle cx="'+cx+'" cy="12" r="4" fill="#8B6914"/>';
+  p+='<circle cx="'+cx+'" cy="12" r="1.5" fill="#FFFEF9"/>';
+  el.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="'+W+'" height="'+h+'" viewBox="0 0 '+W+' '+h+'"><defs><linearGradient id="cg_'+gId+'" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#8B6914"/><stop offset="50%" stop-color="#E8C45A"/><stop offset="100%" stop-color="#8B6914"/></linearGradient><radialGradient id="fg_'+gId+'" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#E8C45A"/><stop offset="60%" stop-color="#C9952A"/><stop offset="100%" stop-color="#8B6914"/></radialGradient></defs>'+p+'</svg>';
+}
+
+/* ══ PETALS ══════════════════════════════ */
+function spawnPetals() {
+  var cols=['rgba(201,149,42,.48)','rgba(232,196,90,.4)','rgba(139,105,20,.35)','rgba(201,149,42,.3)'];
+  for (var i=0;i<20;i++){
+    var el=document.createElement('div');
+    el.className='petal';
+    var sz=7+Math.random()*11,left=56+Math.random()*(window.innerWidth-112),delay=Math.random()*14,dur=7+Math.random()*9;
+    el.style.cssText='left:'+left+'px;width:'+sz+'px;height:'+(sz*.75).toFixed(1)+'px;background:'+cols[Math.floor(Math.random()*cols.length)]+';animation-duration:'+dur+'s;animation-delay:-'+delay+'s';
+    document.body.appendChild(el);
+  }
+}
+
+/* ══ SCROLL ANIMATIONS ═══════════════════ */
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});
+},{threshold:.12});
+document.querySelectorAll('.fade-up').forEach(function(el){obs.observe(el);});
+
+/* ══ COUNTDOWN ═══════════════════════════ */
+function tick(){
+  var target=new Date('2027-01-30T11:00:00+05:30').getTime();
+  var diff=target-Date.now();
+  if(diff<=0)return;
+  document.getElementById('d-cnt').textContent=Math.floor(diff/86400000);
+  document.getElementById('h-cnt').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+  document.getElementById('m-cnt').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  document.getElementById('s-cnt').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+}
+tick();setInterval(tick,1000);
+
+/* ══ SCRATCH CARD ════════════════════════ */
+(function(){
+  var wrap=document.getElementById('scratch-wrap');
+  var canvas=document.getElementById('scratch-canvas');
+  var ctx=canvas.getContext('2d');
+  var S=200;
+  canvas.width=canvas.height=S;
+  canvas.style.width=canvas.style.height='100%';
+
+  function heartPath(c){
+    c.beginPath();
+    c.moveTo(100,170);
+    c.bezierCurveTo(100,170,15,110,15,60);
+    c.bezierCurveTo(15,32,36,12,65,12);
+    c.bezierCurveTo(80,12,92,20,100,32);
+    c.bezierCurveTo(108,20,120,12,135,12);
+    c.bezierCurveTo(164,12,185,32,185,60);
+    c.bezierCurveTo(185,110,100,170,100,170);
+    c.closePath();
+  }
+
+  // Draw black overlay
+  ctx.save();heartPath(ctx);ctx.clip();
+  var cg=ctx.createRadialGradient(100,80,10,100,90,120);cg.addColorStop(0,'#C17A3A');cg.addColorStop(.5,'#8B4513');cg.addColorStop(1,'#5C2E0A');ctx.fillStyle=cg;ctx.fillRect(0,0,S,S);
+
+  ctx.restore();
+  ctx.save();heartPath(ctx);ctx.strokeStyle='rgba(255,255,255,.2)';ctx.lineWidth=2;ctx.stroke();ctx.restore();
+
+  function erase(x,y){
+    ctx.save();heartPath(ctx);ctx.clip();
+    ctx.globalCompositeOperation='destination-out';
+    var g=ctx.createRadialGradient(x,y,0,x,y,30);
+    g.addColorStop(0,'rgba(0,0,0,1)');g.addColorStop(.7,'rgba(0,0,0,.9)');g.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,30,0,Math.PI*2);ctx.fill();ctx.restore();
+    checkDone();
+  }
+
+  var done=false;
+  function checkDone(){
+    if(done)return;
+    var data=ctx.getImageData(0,0,S,S).data;
+    var clear=0;
+    for(var i=3;i<data.length;i+=4)if(data[i]<128)clear++;
+    if(clear/(S*S)>.52){done=true;completeReveal();}
+  }
+
+  function completeReveal(){
+    canvas.style.transition='opacity .6s ease';canvas.style.opacity='0';
+    var cols=['#C9952A','#E8C45A','#8B6914','#FBF5E6','#4A5E2F'];
+    var style=document.createElement('style');
+    style.textContent='@keyframes cfall{0%{transform:translateY(0) rotate(0) scale(1);opacity:1}100%{transform:translateY(100vh) rotate(720deg) scale(.3);opacity:0}}';
+    document.head.appendChild(style);
+    for(var i=0;i<55;i++){
+      (function(ii){setTimeout(function(){
+        var p=document.createElement('div');
+        var sz=5+Math.random()*7;
+        p.style.cssText='position:fixed;width:'+sz+'px;height:'+sz+'px;background:'+cols[Math.floor(Math.random()*cols.length)]+';border-radius:'+(Math.random()>.5?'50%':'2px')+';left:'+(5+Math.random()*90)+'%;top:0;z-index:9999;pointer-events:none;animation:cfall '+(1.5+Math.random()*2)+'s ease-in forwards;';
+        document.body.appendChild(p);setTimeout(function(){p.remove();},4500);
+      },ii*38);})(i);
+    }
+  }
+
+  var down=false;
+  function getXY(e,el){
+    var r=el.getBoundingClientRect(),sx=S/r.width,sy=S/r.height;
+    var src=e.touches?e.touches[0]:e;
+    return{x:(src.clientX-r.left)*sx,y:(src.clientY-r.top)*sy};
+  }
+  var cntShown=false;
+  function showCountdown(){if(cntShown)return;cntShown=true;setTimeout(function(){var el=document.getElementById('cnt-panel');el.style.display='block';setTimeout(function(){el.style.opacity='1';},20);},2000);}
+  canvas.addEventListener('mousedown',function(e){down=true;var p=getXY(e,canvas);erase(p.x,p.y);showCountdown();});
+  canvas.addEventListener('mousemove',function(e){if(!down)return;var p=getXY(e,canvas);erase(p.x,p.y);});
+  canvas.addEventListener('mouseup',function(){down=false;});
+  canvas.addEventListener('touchstart',function(e){e.preventDefault();down=true;var p=getXY(e,canvas);erase(p.x,p.y);showCountdown();},{passive:false});
+  canvas.addEventListener('touchmove',function(e){e.preventDefault();if(!down)return;var p=getXY(e,canvas);erase(p.x,p.y);},{passive:false});
+  canvas.addEventListener('touchend',function(){down=false;});
+})();
+
+/* ══ CALENDAR ════════════════════════════ */
+function ics(){
+  return['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Hetal & Prakhar Wedding//EN',
+    'CALSCALE:GREGORIAN','METHOD:PUBLISH','BEGIN:VEVENT',
+    'DTSTART:20270130T053000Z','DTEND:20270130T103000Z',
+    'SUMMARY:Hetal & Prakhar Wedding',
+    'DESCRIPTION:You are cordially invited to the wedding of Hetal & Prakhar.\\n11:00 AM – 4:00 PM IST at Hotel Maurya\\, Patna\\, Bihar.',
+    'LOCATION:Hotel Maurya\\, Patna\\, Bihar\\, India',
+    'STATUS:CONFIRMED','SEQUENCE:0',
+    'BEGIN:VALARM','TRIGGER:-P1D','ACTION:DISPLAY',
+    'DESCRIPTION:Reminder: Hetal & Prakhar Wedding tomorrow!',
+    'END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
+}
+function dlICS(n){
+  var blob=new Blob([ics()],{type:'text/calendar;charset=utf-8'});
+  var url=URL.createObjectURL(blob);
+  var a=Object.assign(document.createElement('a'),{href:url,download:n});
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+}
+function toggleCalOptions(e){e.preventDefault();var el=document.getElementById('cal-options');el.style.display=el.style.display==='none'?'block':'none';}
+
+function addGoogle(e){
+  e.preventDefault();
+  window.open('https://www.google.com/calendar/render?action=TEMPLATE&text=Hetal+%26+Prakhar+Wedding&dates=20270130T053000Z%2F20270130T103000Z&details=You+are+cordially+invited+to+the+wedding+of+Hetal+%26+Prakhar.+11%3A00+AM+%E2%80%93+4%3A00+PM+IST&location=Hotel+Maurya%2C+Patna%2C+Bihar%2C+India','_blank');
+}
+function addApple(e){e.preventDefault();dlICS('hetal-prakhar-wedding.ics');}
+function addOutlook(e){e.preventDefault();dlICS('hetal-prakhar-wedding.ics');}
+
+/* ══ SHARE ═══════════════════════════════ */
+function copyLink(){
+  try{
+    navigator.clipboard.writeText(window.location.href).then(function(){
+      var el=document.getElementById('copy-ok');
+      el.textContent='Link copied! ✓';
+      setTimeout(function(){el.textContent='';},2500);
+    });
+  }catch(e){}
+}
+function shareWA(e){
+  e.preventDefault();
+  window.open('https://wa.me/?text=You%27re+invited+to+the+wedding+of+Hetal+%26+Prakhar+%E2%80%94+30+January+2027+at+Hotel+Maurya%2C+Patna%21+%F0%9F%92%AB+'+encodeURIComponent(window.location.href),'_blank');
+}
+
+/* ══ INIT ════════════════════════════════ */
+buildGarland(document.getElementById('gl'),'left');
+buildGarland(document.getElementById('gr'),'right');
+</script>
+</body>
+</html>
